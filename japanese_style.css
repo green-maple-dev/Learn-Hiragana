@@ -1,0 +1,121 @@
+/* 1. Global Styles & Variables */
+:root {
+    --bg-color: #f0f2f5;      /* Light gray background */
+    --card-white: #ffffff;    /* Clean white for the card */
+    --primary-blue: #4a90e2;  /* Brand color for buttons/text */
+    --text-dark: #333333;     /* Main text color */
+    --shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+body {
+    font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+/* 2. The 3D Flashcard Setup */
+.flashcard-wrapper {
+    perspective: 1000px; /* Crucial for the 3D depth effect */
+    width: 100%;
+    height: 280px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.flashcard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth "springy" flip */
+    transform-style: preserve-3d; /* Keeps children in 3D space */
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+/* This class is added via JavaScript when clicked */
+.flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+/* 3. Front and Back Face Styling */
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hides the "back" of the element when flipped */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background: var(--card-white);
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.card-front {
+    font-size: 4.5rem; /* Big Kanji/Kana */
+    color: var(--text-dark);
+}
+
+.card-back {
+    background-color: #fafafa;
+    transform: rotateY(180deg); /* Pre-flips the back face */
+}
+
+/* Back face text details */
+.reading {
+    font-size: 1.2rem;
+    color: #888;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.meaning {
+    font-size: 2.2rem;
+    color: var(--primary-blue);
+    font-weight: bold;
+}
+
+/* 4. Controls & Buttons */
+button {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+}
+
+button:hover {
+    background-color: #357abd;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.counter {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Flashcards</title>
+    <style>
+        :root {
+            --bg: #f0f2f5;
+            --card-bg: #ffffff;
+            --primary: #4a90e2;
+            --text: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        /* Flashcard Container */
+        .flashcard-wrapper {
+            perspective: 1000px;
+            width: 100%;
+            height: 300px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .flashcard {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 15px;
+        }
+
+        /* Flip effect */
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            background: var(--card-bg);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card-front {
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background-color: #fcfcfc;
+        }
+
+        .reading { font-size: 1.5rem; color: #666; margin-bottom: 10px; }
+        .meaning { font-size: 2rem; color: var(--primary); font-weight: bold; }
+
+        /* Controls */
+        button {
+            padding: 10px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--primary);
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        button:hover { opacity: 0.9; }
+        .counter { margin-top: 15px; color: #777; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Japanese Flashcards</h2>
+    
+    <div class="flashcard-wrapper" onclick="flipCard()">
+        <div class="flashcard" id="card">
+            <div class="card-face card-front">
+                <div id="front-text">こんにちは</div>
+            </div>
+            <div class="card-face card-back">
+                <div class="reading" id="reading-text">Konnichiwa</div>
+                <div class="meaning" id="back-text">Hello</div>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="nextCard()">Next Card →</button>
+    <div class="counter" id="counter">Card 1 of 3</div>
+</div>
+
+<script>
+    // 1. Your Data: Add more cards here!
+    const deck = [
+        { front: "猫", reading: "ねこ (Neko)", back: "Cat" },
+        { front: "食べる", reading: "たべる (Taberu)", back: "To eat" },
+        { front: "水", reading: "みず (Mizu)", back: "Water" },
+        { front: "先生", reading: "せんせい (Sensei)", back: "Teacher" }
+    ];
+
+    let currentIndex = 0;
+    const cardElement = document.getElementById('card');
+    const frontText = document.getElementById('front-text');
+    const backText = document.getElementById('back-text');
+    const readingText = document.getElementById('reading-text');
+    const counterText = document.getElementById('counter');
+
+    // 2. Flip Logic
+    function flipCard() {
+        cardElement.classList.toggle('flipped');
+    }
+
+    // 3. Navigation Logic
+    function nextCard() {
+        // Reset flip state first
+        cardElement.classList.remove('flipped');
+
+        // Small delay to let the card flip back before changing text
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % deck.length;
+            updateUI();
+        }, 150);
+    }
+
+    function updateUI() {
+        const cardData = deck[currentIndex];
+        frontText.innerText = cardData.front;
+        readingText.innerText = cardData.reading;
+        backText.innerText = cardData.back;
+        counterText.innerText = `Card ${currentIndex + 1} of ${deck.length}`;
+    }
+
+    // Initialize the first card
+    updateUI();
+</script>
+
+</body>
+</html>
