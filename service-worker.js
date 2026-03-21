@@ -1,10 +1,11 @@
-const CACHE_NAME = 'All in 1 JLC Cache v1';
+const CACHE_NAME = 'All in 1 JLC Cache v21-03-2026-11:43AM';
 // Add all your image filenames to this list
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/images/JP_flag.png',
-  '/images/aoi.png',
+  './',
+  'index.html',
+  'images/JP_flag.png',
+  'images/aoi.png',
+  'service-worker.js',
 ];
 
 // Install: Saves files to the phone
