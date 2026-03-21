@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jlc-v1-complete'; // Simple name, no spaces
+const CACHE_NAME = 'jlc-v21-03-2026-7-06-PM-complete'; // Simple name, no spaces
 const ASSETS = [
   '',
   'index.html',
