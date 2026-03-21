@@ -523,9 +523,9 @@
 <div id="fc-menu" class="container">
     <h2>Categories</h2>
     <div class="menu-grid">
-        <div class="list-item" onclick="startFlashcards('A')">A-Row (あいうえお)</div>
-        <div class="list-item" onclick="startFlashcards('KA')">KA-Row (かきくけこ)</div>
-        <div class="list-item" onclick="startFlashcards('SA')">SA-Row (さしすせそ)</div>
+        <div class="list-item" onclick="startFlashcards('あ')">あ-Row</div>
+        <div class="list-item" onclick="startFlashcards('か')">か-Row</div>
+        <div class="list-item" onclick="startFlashcards('さ')">さ-Row</div>
     </div>
 </div>
 
@@ -716,7 +716,7 @@
     // FLASHCARD DATA
     // -----------------------------
     const allDecks = {
-        'A': [
+        'あ': [
             {
                 front: "青",
                 reading: "青 (あお)",
@@ -749,7 +749,7 @@
                 explanation: "愛 (あい) means love or affection."
             }
         ],
-        'KA': [
+        'か': [
             {
                 front: "かさ",
                 reading: "Kasa",
@@ -777,7 +777,7 @@
                 explanation: "かに means crab."
             }
         ],
-        'SA': [
+        'さ': [
             {
                 front: "さむい",
                 reading: "Samui",
@@ -809,7 +809,7 @@
         shuffleArray(currentOrder);
 
         currentPosition = 0;
-        document.getElementById('category-title').innerText = row + " Row";
+        document.getElementById('category-title').innerText = row + "-Row";
         updateUI();
         showSection('fc-player', true);
     }
