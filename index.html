@@ -819,6 +819,11 @@ Example:
         }
 
         return 0;
+}
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(() => console.log("Offline mode active!"))
+      .catch((err) => console.log("Offline setup failed", err));
     }
 </script>
 
