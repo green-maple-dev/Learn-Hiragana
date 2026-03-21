@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Language Study Hub</title>
+    <title>Study Hub</title>
     <style>
         :root {
             --bg: #f8f9fa;
@@ -312,12 +312,6 @@
             cursor: zoom-in;
         }
 
-        .audio-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
         .extra-audio {
             width: 100%;
             display: block;
@@ -501,6 +495,9 @@
         <div class="list-item" onclick="selectLanguage('zh')">
             🇨🇳 Chinese <span>></span>
         </div>
+        <div class="list-item" onclick="selectLanguage('biology')">
+            🧬 Biology <span>></span>
+        </div>
     </div>
 </div>
 
@@ -523,19 +520,37 @@
 </div>
 
 <div id="zh-home" class="container">
-    <h1>中文学习中心</h1>
+    <h1>Chinese Hub</h1>
     <div class="menu-grid">
         <div class="list-item" onclick="openFlashcardMenu()">
-            🎴 词卡分类 <span>></span>
+            🎴 Flashcard Categories <span>></span>
         </div>
         <div class="list-item" onclick="openTopicCategory('reading')">
-            📖 阅读练习 <span>></span>
+            📖 Practice Reading <span>></span>
         </div>
         <div class="list-item" onclick="openTopicCategory('grammar')">
-            📝 语法说明 <span>></span>
+            📝 Grammar Explanation <span>></span>
         </div>
         <div class="list-item" onclick="openTopicCategory('mistakes')">
-            ⚠️ 常见错误 <span>></span>
+            ⚠️ Common Mistakes <span>></span>
+        </div>
+    </div>
+</div>
+
+<div id="biology-home" class="container">
+    <h1>Biology Hub</h1>
+    <div class="menu-grid">
+        <div class="list-item" onclick="openFlashcardMenu()">
+            🧪 Flashcard Categories <span>></span>
+        </div>
+        <div class="list-item" onclick="openTopicCategory('reading')">
+            📘 Study Notes <span>></span>
+        </div>
+        <div class="list-item" onclick="openTopicCategory('grammar')">
+            🧠 Concepts <span>></span>
+        </div>
+        <div class="list-item" onclick="openTopicCategory('mistakes')">
+            ⚠️ Common Misconceptions <span>></span>
         </div>
     </div>
 </div>
@@ -656,19 +671,12 @@
 </div>
 
 <script>
-    // -----------------------------
-    // APP CONFIG
-    // -----------------------------
     const appData = {
         jp: {
             homeId: 'jp-home',
-            homeTitle: 'Japanese Hub',
             flashcardMenuTitle: 'Categories',
             topicMenuTitle: 'Topics',
-            sortLabel: 'Sort by JLPT Level',
-            levelLabel: 'JLPT',
             levelBadge: (topic) => `JLPT N${topic.level}`,
-            levelSortValue: 'level',
             levelSortOptions: [
                 { value: 'difficulty', label: 'Sort by Difficulty' },
                 { value: 'level', label: 'Sort by JLPT Level' },
@@ -687,7 +695,7 @@
             decks: {
                 A: [
                     {
-                        front: "青",
+                        front: "あお",
                         reading: "青 (あお)",
                         back: "Blue",
                         image: "images/青.webp",
@@ -897,27 +905,23 @@ Example:
 
         zh: {
             homeId: 'zh-home',
-            homeTitle: '中文学习中心',
-            flashcardMenuTitle: '词卡分类',
-            topicMenuTitle: '主题',
-            sortLabel: '按汉语水平排序',
-            levelLabel: 'HSK',
+            flashcardMenuTitle: 'Flashcard Categories',
+            topicMenuTitle: 'Topics',
             levelBadge: (topic) => `HSK ${topic.level}`,
-            levelSortValue: 'level',
             levelSortOptions: [
-                { value: 'difficulty', label: '按难度排序' },
-                { value: 'level', label: '按 HSK 排序' },
-                { value: 'character', label: '按字词顺序排序' }
+                { value: 'difficulty', label: 'Difficulty' },
+                { value: 'level', label: 'Sort by HSK' },
+                { value: 'character', label: 'Sort by Character' }
             ],
             navLabels: {
-                reading: '📖 阅读练习',
-                grammar: '📝 语法说明',
-                mistakes: '⚠️ 常见错误'
+                reading: '📖 Practice Reading',
+                grammar: '📝 Grammar Explanation',
+                mistakes: '⚠️ Common Mistakes'
             },
             flashcardCategories: [
-                { key: 'P1', label: '拼音入门' },
-                { key: 'P2', label: '常用汉字' },
-                { key: 'P3', label: '日常句子' }
+                { key: 'P1', label: 'Pinyin Basics' },
+                { key: 'P2', label: 'Common Characters' },
+                { key: 'P3', label: 'Everyday Sentences' }
             ],
             decks: {
                 P1: [
@@ -1067,7 +1071,7 @@ Example:
                         title: "School Notice",
                         level: 3,
                         difficulty_base: 4,
-                        character_letter: "学",
+                        character_letter: "school",
                         image: "images/chinese-school.png",
                         explanation: `
 School notices often use dates, times, and formal instructions.
@@ -1089,7 +1093,7 @@ Example:
                         title: "Tone Errors",
                         level: 5,
                         difficulty_base: 2,
-                        character_letter: "妈",
+                        character_letter: "tone",
                         image: "images/tones.png",
                         explanation: `
 A very common mistake in Mandarin is using the wrong tone.
@@ -1122,12 +1126,274 @@ Using the correct measure word is important in natural Chinese.
                     }
                 ]
             }
+        },
+
+        biology: {
+            homeId: 'biology-home',
+            flashcardMenuTitle: 'Flashcard Categories',
+            topicMenuTitle: 'Biology Topics',
+            levelBadge: (topic) => `Chapter ${topic.level}`,
+            levelSortOptions: [
+                { value: 'difficulty', label: 'Sort by Difficulty' },
+                { value: 'level', label: 'Sort by Chapter' },
+                { value: 'character', label: 'Sort by Term' }
+            ],
+            navLabels: {
+                reading: '📘 Study Notes',
+                grammar: '🧠 Concepts',
+                mistakes: '⚠️ Common Misconceptions'
+            },
+            flashcardCategories: [
+                { key: 'CELL', label: 'Cell Biology' },
+                { key: 'GEN', label: 'Genetics' },
+                { key: 'ANAT', label: 'Human Anatomy' }
+            ],
+            decks: {
+                CELL: [
+                    {
+                        front: "Mitochondria",
+                        reading: "The powerhouse of the cell",
+                        back: "Produces ATP through cellular respiration",
+                        image: "images/biology-mitochondria.png",
+                        pronunciation_img: "images/biology-mitochondria-diagram.png",
+                        writing_images: ["images/biology-mitochondria-structure.png"],
+                        examples: "Found in most eukaryotic cells.",
+                        formality: "Cell organelle",
+                        explanation: "Mitochondria convert energy from food into usable cellular energy (ATP)."
+                    },
+                    {
+                        front: "Nucleus",
+                        reading: "Control center of the cell",
+                        back: "Contains DNA and controls cell activities",
+                        image: "images/biology-nucleus.png",
+                        pronunciation_img: "images/biology-nucleus-diagram.png",
+                        writing_images: ["images/biology-nucleus-structure.png"],
+                        examples: "Eukaryotic cells have a nucleus.",
+                        formality: "Cell organelle",
+                        explanation: "The nucleus stores genetic information and regulates many cell processes."
+                    },
+                    {
+                        front: "Ribosome",
+                        reading: "Protein-making structure",
+                        back: "Synthesizes proteins from mRNA",
+                        image: "images/biology-ribosome.png",
+                        pronunciation_img: "images/biology-ribosome-diagram.png",
+                        writing_images: ["images/biology-ribosome-assembly.png"],
+                        examples: "Ribosomes may be free or attached to rough ER.",
+                        formality: "Cell organelle",
+                        explanation: "Ribosomes read mRNA and build amino acid chains."
+                    }
+                ],
+                GEN: [
+                    {
+                        front: "DNA",
+                        reading: "Deoxyribonucleic acid",
+                        back: "Carries genetic instructions",
+                        image: "images/biology-dna.png",
+                        pronunciation_img: "images/biology-dna-structure.png",
+                        writing_images: ["images/biology-dna-helix.png"],
+                        examples: "DNA is found in chromosomes.",
+                        formality: "Genetic material",
+                        explanation: "DNA stores the instructions needed to build and maintain an organism."
+                    },
+                    {
+                        front: "Gene",
+                        reading: "A segment of DNA",
+                        back: "A unit of heredity",
+                        image: "images/biology-gene.png",
+                        pronunciation_img: "images/biology-gene-diagram.png",
+                        writing_images: ["images/biology-gene-sequence.png"],
+                        examples: "Genes influence traits such as eye color.",
+                        formality: "Genetic unit",
+                        explanation: "A gene contains information for a functional product, usually a protein."
+                    },
+                    {
+                        front: "Chromosome",
+                        reading: "Packaged DNA structure",
+                        back: "Carries genes in the nucleus",
+                        image: "images/biology-chromosome.png",
+                        pronunciation_img: "images/biology-chromosome-diagram.png",
+                        writing_images: ["images/biology-chromosome-pair.png"],
+                        examples: "Humans have 46 chromosomes.",
+                        formality: "Genetic structure",
+                        explanation: "Chromosomes compact DNA and help organize genetic information."
+                    }
+                ],
+                ANAT: [
+                    {
+                        front: "Heart",
+                        reading: "Pumps blood",
+                        back: "Circulatory organ",
+                        image: "images/biology-heart.png",
+                        pronunciation_img: "images/biology-heart-diagram.png",
+                        writing_images: ["images/biology-heart-path.png"],
+                        examples: "The heart beats continuously.",
+                        formality: "Organ",
+                        explanation: "The heart pumps blood to deliver oxygen and nutrients throughout the body."
+                    },
+                    {
+                        front: "Neuron",
+                        reading: "Nerve cell",
+                        back: "Transmits electrical signals",
+                        image: "images/biology-neuron.png",
+                        pronunciation_img: "images/biology-neuron-diagram.png",
+                        writing_images: ["images/biology-neuron-axon.png"],
+                        examples: "Neurons communicate through synapses.",
+                        formality: "Cell type",
+                        explanation: "Neurons are specialized cells in the nervous system that carry information."
+                    },
+                    {
+                        front: "Lung",
+                        reading: "Breathing organ",
+                        back: "Exchanges oxygen and carbon dioxide",
+                        image: "images/biology-lung.png",
+                        pronunciation_img: "images/biology-lung-diagram.png",
+                        writing_images: ["images/biology-lung-airway.png"],
+                        examples: "Humans have two lungs.",
+                        formality: "Organ",
+                        explanation: "Lungs support gas exchange, bringing oxygen into the body and removing carbon dioxide."
+                    }
+                ]
+            },
+            topicData: {
+                grammar: [
+                    {
+                        title: "Cell Structure",
+                        level: 1,
+                        difficulty_base: 1,
+                        character_letter: "Cell",
+                        image: "images/biology-cell-structure.png",
+                        explanation: `
+A cell is the basic unit of life.
+
+Key structures:
+- cell membrane
+- cytoplasm
+- nucleus in eukaryotic cells
+- mitochondria
+- ribosomes
+
+Why it matters:
+Cells are the building blocks of all living organisms.
+                        `.trim()
+                    },
+                    {
+                        title: "DNA and Genes",
+                        level: 2,
+                        difficulty_base: 2,
+                        character_letter: "DNA",
+                        image: "images/biology-dna-genes.png",
+                        explanation: `
+DNA stores genetic information.
+
+Genes are sections of DNA that affect traits and help make proteins.
+
+Key idea:
+DNA is the instruction set.
+Genes are functional segments within that instruction set.
+                        `.trim()
+                    },
+                    {
+                        title: "Photosynthesis",
+                        level: 3,
+                        difficulty_base: 3,
+                        character_letter: "Plant",
+                        image: "images/biology-photosynthesis.png",
+                        explanation: `
+Photosynthesis is the process plants use to make glucose.
+
+Inputs:
+- carbon dioxide
+- water
+- light
+
+Outputs:
+- glucose
+- oxygen
+
+It mainly happens in chloroplasts.
+                        `.trim()
+                    }
+                ],
+                reading: [
+                    {
+                        title: "Cell Respiration Notes",
+                        level: 2,
+                        difficulty_base: 2,
+                        character_letter: "Respiration",
+                        image: "images/biology-respiration.png",
+                        explanation: `
+Cellular respiration is how cells convert glucose into usable energy.
+
+Main idea:
+- glucose is broken down
+- ATP is produced
+- oxygen is often involved in aerobic respiration
+
+This process helps cells power movement, repair, and growth.
+                        `.trim()
+                    },
+                    {
+                        title: "Blood Circulation",
+                        level: 3,
+                        difficulty_base: 3,
+                        character_letter: "Circulation",
+                        image: "images/biology-circulation.png",
+                        explanation: `
+Blood circulation moves oxygen, nutrients, and waste through the body.
+
+Main path:
+- heart
+- arteries
+- capillaries
+- veins
+- heart
+
+This system works with the respiratory system to keep cells supplied.
+                        `.trim()
+                    }
+                ],
+                mistakes: [
+                    {
+                        title: "Plant vs Animal Cells",
+                        level: 1,
+                        difficulty_base: 2,
+                        character_letter: "Cell",
+                        image: "images/biology-plant-animal.png",
+                        explanation: `
+A common misunderstanding is thinking plant and animal cells are identical.
+
+Plant cells usually have:
+- cell wall
+- chloroplasts
+- large central vacuole
+
+Animal cells do not have chloroplasts or a cell wall.
+                        `.trim()
+                    },
+                    {
+                        title: "Mitosis vs Meiosis",
+                        level: 2,
+                        difficulty_base: 4,
+                        character_letter: "Division",
+                        image: "images/biology-mitosis-meiosis.png",
+                        explanation: `
+Mitosis and meiosis are both forms of cell division, but they are different.
+
+Mitosis:
+- makes identical cells
+- used for growth and repair
+
+Meiosis:
+- makes sex cells
+- increases genetic variation
+                        `.trim()
+                    }
+                ]
+            }
         }
     };
 
-    // -----------------------------
-    // STATE
-    // -----------------------------
     let currentLanguage = null;
     let currentTopicCategory = null;
     let displayedTopics = [];
@@ -1136,9 +1402,6 @@ Using the correct measure word is important in natural Chinese.
     let currentPosition = 0;
     let navigationHistory = ['language-select'];
 
-    // -----------------------------
-    // NAVIGATION
-    // -----------------------------
     function showSection(id, pushHistory = false) {
         document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
         const el = document.getElementById(id);
@@ -1187,9 +1450,6 @@ Using the correct measure word is important in natural Chinese.
             prevSection === 'language-select' ? 'hidden' : 'visible';
     }
 
-    // -----------------------------
-    // FULLSCREEN MODAL
-    // -----------------------------
     function openMediaModal(src, type, altText = '') {
         const modal = document.getElementById('media-modal');
         const content = document.getElementById('media-modal-content');
@@ -1213,9 +1473,6 @@ Using the correct measure word is important in natural Chinese.
         document.body.style.overflow = '';
     }
 
-    // -----------------------------
-    // FLASHCARD MENU
-    // -----------------------------
     function openFlashcardMenu() {
         if (!currentLanguage) return;
 
@@ -1232,6 +1489,13 @@ Using the correct measure word is important in natural Chinese.
         showSection('fc-menu', true);
     }
 
+    function getFlashcardCategoryLabel(row) {
+        if (!currentLanguage) return row;
+        const cfg = appData[currentLanguage];
+        const found = cfg.flashcardCategories.find(c => c.key === row);
+        return found ? found.label : row;
+    }
+
     function startFlashcards(row) {
         if (!currentLanguage) return;
 
@@ -1245,7 +1509,8 @@ Using the correct measure word is important in natural Chinese.
         shuffleArray(currentOrder);
 
         currentPosition = 0;
-        document.getElementById('category-title').innerText = row;
+        document.getElementById('card').classList.remove('flipped');
+        document.getElementById('category-title').innerText = getFlashcardCategoryLabel(row);
         updateUITextForLanguage();
         updateUI();
         showSection('fc-player', true);
@@ -1376,7 +1641,6 @@ Using the correct measure word is important in natural Chinese.
         if (!container) return;
 
         const media = normalizeWritingMedia(data);
-
         container.innerHTML = '';
 
         if (!media.length) {
@@ -1431,17 +1695,25 @@ Using the correct measure word is important in natural Chinese.
     function updateUITextForLanguage() {
         if (!currentLanguage) return;
 
-        const cfg = appData[currentLanguage];
-
-        document.getElementById('reading-label').innerText = currentLanguage === 'jp' ? 'Reading' : '拼音';
-        document.getElementById('meaning-label').innerText = currentLanguage === 'jp' ? 'Meaning' : '意思';
-        document.getElementById('formality-label').innerText = currentLanguage === 'jp' ? 'Formality' : '语体';
-        document.getElementById('examples-label').innerText = currentLanguage === 'jp' ? 'Examples' : '例句';
-        document.getElementById('explanation-label').innerText = currentLanguage === 'jp' ? 'Explanation' : '说明';
-        document.getElementById('pronunciation-audio-label').innerText = currentLanguage === 'jp' ? 'Pronunciation Audio' : '发音音频';
-        document.getElementById('sentence-audio-label').innerText = currentLanguage === 'jp' ? 'Sentence Audio' : '句子音频';
-        document.getElementById('writing-label').innerText = currentLanguage === 'jp' ? 'Writing Stroke' : '笔顺';
-        document.getElementById('fc-menu-title').innerText = cfg.flashcardMenuTitle;
+        if (currentLanguage === 'jp' || currentLanguage === 'zh') {
+            document.getElementById('reading-label').innerText = 'Reading';
+            document.getElementById('meaning-label').innerText = 'Meaning';
+            document.getElementById('formality-label').innerText = 'Formality';
+            document.getElementById('examples-label').innerText = 'Examples';
+            document.getElementById('explanation-label').innerText = 'Explanation';
+            document.getElementById('pronunciation-audio-label').innerText = 'Pronunciation Audio';
+            document.getElementById('sentence-audio-label').innerText = 'Sentence Audio';
+            document.getElementById('writing-label').innerText = 'Writing Stroke';
+        } else if (currentLanguage === 'biology') {
+            document.getElementById('reading-label').innerText = 'Definition';
+            document.getElementById('meaning-label').innerText = 'Function';
+            document.getElementById('formality-label').innerText = 'Category';
+            document.getElementById('examples-label').innerText = 'Facts';
+            document.getElementById('explanation-label').innerText = 'Explanation';
+            document.getElementById('pronunciation-audio-label').innerText = '';
+            document.getElementById('sentence-audio-label').innerText = '';
+            document.getElementById('writing-label').innerText = 'Diagram / Process';
+        }
     }
 
     function updateUI() {
@@ -1464,9 +1736,6 @@ Using the correct measure word is important in natural Chinese.
         renderWritingMedia(data);
     }
 
-    // -----------------------------
-    // TOPIC LIST / VIEW
-    // -----------------------------
     function openTopicCategory(category) {
         if (!currentLanguage) return;
 
@@ -1490,99 +1759,18 @@ Using the correct measure word is important in natural Chinese.
         return appData[currentLanguage].topicData[currentTopicCategory] || [];
     }
 
-    function getSortedTopics() {
-        const cfg = appData[currentLanguage];
-        const sortMode = document.getElementById('sort-mode').value;
-        const topics = [...getCurrentTopics()];
-
-        if (sortMode === 'level') {
-            if (currentLanguage === 'jp') {
-                topics.sort((a, b) => b.level - a.level); // N5 -> N1
-            } else {
-                topics.sort((a, b) => a.level - b.level); // HSK 1 -> 6
-            }
-        } else if (sortMode === 'character') {
-            if (currentLanguage === 'jp') {
-                topics.sort((a, b) => compareKana(a.character_letter, b.character_letter));
-            } else {
-                topics.sort((a, b) => comparePinyin(a.character_letter, b.character_letter));
-            }
-        } else {
-            topics.sort((a, b) => a.difficulty_base - b.difficulty_base);
-        }
-
-        return topics;
+    function stripLatinMarks(str) {
+        return (str || '')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/ü/g, 'u');
     }
 
-    function openTopic(topicIndex) {
-        const topic = displayedTopics[topicIndex];
-        if (!topic) return;
-
-        const cfg = appData[currentLanguage];
-
-        document.getElementById('topic-title').innerText = topic.title;
-
-        const topicImg = document.getElementById('topic-image');
-        if (topic.image) {
-            topicImg.src = topic.image;
-            topicImg.alt = topic.title;
-            topicImg.style.display = 'block';
-            topicImg.onclick = (e) => {
-                e.stopPropagation();
-                openMediaModal(topic.image, 'image', topic.title);
-            };
-        } else {
-            topicImg.removeAttribute('src');
-            topicImg.style.display = 'none';
-            topicImg.onclick = null;
-        }
-
-        document.getElementById('badge-category').innerText =
-            currentLanguage === 'jp'
-                ? (currentTopicCategory === 'grammar' ? 'Grammar' : currentTopicCategory === 'reading' ? 'Reading' : 'Mistakes')
-                : (currentTopicCategory === 'grammar' ? '语法' : currentTopicCategory === 'reading' ? '阅读' : '错误');
-
-        document.getElementById('badge-level').innerText = cfg.levelBadge(topic);
-        document.getElementById('badge-difficulty').innerText = currentLanguage === 'jp'
-            ? `Difficulty ${topic.difficulty_base}/5`
-            : `难度 ${topic.difficulty_base}/5`;
-        document.getElementById('badge-character').innerText = currentLanguage === 'jp'
-            ? `Kana: ${topic.character_letter}`
-            : `拼音/字词: ${topic.character_letter}`;
-
-        document.getElementById('topic-content').innerText = topic.explanation;
-        showSection('topic-view', true);
+    function compareLatin(a, b) {
+        return stripLatinMarks(a).localeCompare(stripLatinMarks(b), 'en');
     }
 
-    function renderTopicList() {
-        const body = document.getElementById('topic-list-body');
-        displayedTopics = getSortedTopics();
-
-        if (displayedTopics.length === 0) {
-            body.innerHTML = `<div class="empty-state">${currentLanguage === 'jp' ? 'No topics have been added yet.' : '暂无内容。'}</div>`;
-            return;
-        }
-
-        body.innerHTML = displayedTopics.map((topic, index) => {
-            const cfg = appData[currentLanguage];
-            const levelText = cfg.levelBadge(topic);
-            return `
-                <div class="list-item" onclick="openTopic(${index})">
-                    <div>
-                        <div>${topic.title}</div>
-                        <div class="topic-meta">
-                            ${levelText} · ${currentLanguage === 'jp' ? 'Difficulty' : '难度'} ${topic.difficulty_base}/5 · ${topic.character_letter}
-                        </div>
-                    </div>
-                    <span>></span>
-                </div>
-            `;
-        }).join('');
-    }
-
-    // -----------------------------
-    // SORT HELPERS
-    // -----------------------------
     function toHiragana(str) {
         return (str || '').replace(/[\u30A1-\u30F6]/g, ch =>
             String.fromCharCode(ch.charCodeAt(0) - 0x60)
@@ -1682,24 +1870,100 @@ Using the correct measure word is important in natural Chinese.
         return 0;
     }
 
-    function stripPinyinMarks(str) {
-        return (str || '')
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .toLowerCase()
-            .replace(/ü/g, 'u');
+    function getSortedTopics() {
+        const sortMode = document.getElementById('sort-mode').value;
+        const topics = [...getCurrentTopics()];
+
+        if (sortMode === 'level') {
+            if (currentLanguage === 'jp') {
+                topics.sort((a, b) => b.level - a.level);
+            } else {
+                topics.sort((a, b) => a.level - b.level);
+            }
+        } else if (sortMode === 'character') {
+            if (currentLanguage === 'jp') {
+                topics.sort((a, b) => compareKana(a.character_letter, b.character_letter));
+            } else {
+                topics.sort((a, b) => compareLatin(a.character_letter, b.character_letter));
+            }
+        } else {
+            topics.sort((a, b) => a.difficulty_base - b.difficulty_base);
+        }
+
+        return topics;
     }
 
-    function comparePinyin(a, b) {
-        return stripPinyinMarks(a).localeCompare(stripPinyinMarks(b), 'en');
+    function openTopic(topicIndex) {
+        const topic = displayedTopics[topicIndex];
+        if (!topic) return;
+
+        const cfg = appData[currentLanguage];
+
+        document.getElementById('topic-title').innerText = topic.title;
+
+        const topicImg = document.getElementById('topic-image');
+        if (topic.image) {
+            topicImg.src = topic.image;
+            topicImg.alt = topic.title;
+            topicImg.style.display = 'block';
+            topicImg.onclick = (e) => {
+                e.stopPropagation();
+                openMediaModal(topic.image, 'image', topic.title);
+            };
+        } else {
+            topicImg.removeAttribute('src');
+            topicImg.style.display = 'none';
+            topicImg.onclick = null;
+        }
+
+        document.getElementById('badge-category').innerText =
+            currentLanguage === 'jp'
+                ? (currentTopicCategory === 'grammar' ? 'Grammar' : currentTopicCategory === 'reading' ? 'Reading' : 'Mistakes')
+                : currentLanguage === 'zh'
+                    ? (currentTopicCategory === 'grammar' ? 'Concepts' : currentTopicCategory === 'reading' ? 'Study Notes' : 'Misconceptions')
+                    : (currentTopicCategory === 'grammar' ? 'Concepts' : currentTopicCategory === 'reading' ? 'Study Notes' : 'Misconceptions');
+
+        document.getElementById('badge-level').innerText = cfg.levelBadge(topic);
+        document.getElementById('badge-difficulty').innerText = currentLanguage === 'jp'
+            ? `Difficulty ${topic.difficulty_base}/5`
+            : currentLanguage === 'zh'
+                ? `Difficulty ${topic.difficulty_base}/5`
+                : `Difficulty ${topic.difficulty_base}/5`;
+
+        document.getElementById('badge-character').innerText = currentLanguage === 'jp'
+            ? `Kana: ${topic.character_letter}`
+            : currentLanguage === 'zh'
+                ? `Term: ${topic.character_letter}`
+                : `Term: ${topic.character_letter}`;
+
+        document.getElementById('topic-content').innerText = topic.explanation;
+        showSection('topic-view', true);
     }
 
-    // Initialize on load
-    document.getElementById('sort-mode').innerHTML = `
-        <option value="difficulty">Sort by Difficulty</option>
-        <option value="level">${currentLanguage === 'zh' ? '按 HSK 排序' : 'Sort by JLPT Level'}</option>
-        <option value="character">${currentLanguage === 'zh' ? '按字词顺序排序' : 'Sort by Character'}</option>
-    `;
+    function renderTopicList() {
+        const body = document.getElementById('topic-list-body');
+        displayedTopics = getSortedTopics();
+
+        if (displayedTopics.length === 0) {
+            body.innerHTML = `<div class="empty-state">${currentLanguage === 'zh' ? 'No topics have been added yet.' : 'No topics have been added yet.'}</div>`;
+            return;
+        }
+
+        body.innerHTML = displayedTopics.map((topic, index) => {
+            const cfg = appData[currentLanguage];
+            return `
+                <div class="list-item" onclick="openTopic(${index})">
+                    <div>
+                        <div>${topic.title}</div>
+                        <div class="topic-meta">
+                            ${cfg.levelBadge(topic)} · ${currentLanguage === 'zh' ? 'Difficulty' : 'Difficulty'} ${topic.difficulty_base}/5 · ${topic.character_letter}
+                        </div>
+                    </div>
+                    <span>></span>
+                </div>
+            `;
+        }).join('');
+    }
 </script>
 
 </body>
