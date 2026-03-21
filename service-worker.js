@@ -1,6 +1,6 @@
-const CACHE_NAME = 'jlc-v2'; // Simple name, no spaces
+const CACHE_NAME = 'jlc-v3'; // Simple name, no spaces
 const ASSETS = [
-  './',
+  '',
   'index.html',
   'images/JP_flag.png',
   'images/aoi.png'
