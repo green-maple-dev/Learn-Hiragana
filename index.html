@@ -212,7 +212,23 @@
             letter-spacing: 2px;
         }
 
-        .reading-value { font-size: 4rem; color: var(--primary); font-weight: bold; }
+        .reading-value { 
+            font-size: 4rem; 
+            color: var(--primary); 
+            font-weight: bold; 
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        /* NEW STYLES FOR THE BRACKETS */
+        .reading-value span.instruction {
+            display: block;
+            font-size: 1.1rem; /* Much smaller */
+            color: #000000;    /* Black color */
+            font-weight: normal;
+            margin-top: 10px;
+        }
+
         .type-label { font-size: 0.9rem; color: #888; text-transform: uppercase; font-weight: bold; margin-top: 10px; }
 
         .speak-btn {
@@ -317,21 +333,15 @@
 </div>
 
 <div id="guide" class="container">
-
     <h2>From Me, Guide to practice Hiragana</h2>
-
     <div class="guide-content">
-        <p>Learning Hiragana is the first step to unlocking the Japanese language! Here are some helpful tips to help you master them quickly and have fun!</p>
+        <p>Learning Hiragana is the first step to unlocking the Japanese language! Here are some helpful tips to help you master them quickly and fun!</p>
         <h4>1. Understand the "A-I-U-E-O" Order</h4>
-        <p>Japanese follows a very consistent vowel pattern: <strong>A, I, U, E, O</strong>. Once you know this, every other row follows the same sound (Ka, Ki, Ku, Ke, Ko, etc.).</p>
+        <p>Japanese follows a very consistent vowel pattern: <strong>A, I, U, E, O</strong>.</p>
         <h4>2. Practice Writing (Stroke Order)</h4>
-        <p>Japanese characters are meant to be written in a specific order. Writing them out by hand helps your brain remember the shapes much better than just looking at them, not just for Hiragana, but for Katakana, Kanji and Hanzi in Chinese, for me too!</p>
-        <h4>3. Use Mnemonics (Depends on the person, I don't like mnemonics)</h4>
-        <p>Make them easier for you to remember! For example, <strong>"あ" (A)</strong> looks like a <strong>Cross</strong> with a <strong>fish</strong>. <strong>"く" (Ku)</strong> looks like a <strong>Cuckoo bird's beak</strong>.</p>
-        <h4>4. Daily Flashcard Rounds</h4>
-        <p>Learn around <strong>5-10</strong> characters per day for a consistent routine and avoid burning out. Use the <strong>Shuffle</strong> button frequently so you don't just memorise the order of the cards, but the characters themselves.</p>
-        <h4>5. Listen While You Learn</h4>
-        <p>Tap the <strong>"Pronunciation"</strong> button on the back of the cards. Hearing the sound while seeing the character is the best way to train your ears. You can ask me on Discord if you don't understand a thing.</p>
+        <p>Japanese characters are meant to be written in a specific order. Writing them out by hand helps your brain remember the shapes.</p>
+        <h4>3. Daily Flashcard Rounds</h4>
+        <p>Learn around <strong>5-10</strong> characters per day. Use the <strong>Shuffle</strong> button frequently.</p>
         <p style="text-align:center; font-weight:bold; margin-top:30px; color:var(--primary);">God bless with your studies! You've got this!</p>
     </div>
 </div>
@@ -366,32 +376,106 @@
 
 <script>
     const allDecks = {
-        'A': [{f: "あ", r: "a", v: "./videos/あ.gif"}, {f: "い", r: "i", v: "videos/い.gif"}, {f: "う", r: "u", v: "videos/う.gif"}, {f: "え", r: "e", v: "videos/え.gif"}, {f: "お", r: "o", v: "videos/お.gif"}],
+        'A': [{f: "あ", r: "a", v: "videos/あ.gif"}, {f: "い", r: "i", v: "videos/い.gif"}, {f: "う", r: "u", v: "videos/う.gif"}, {f: "え", r: "e", v: "videos/え.gif"}, {f: "お", r: "o", v: "videos/お.gif"}],
         'KA': [{f: "か", r: "ka", v: "videos/か.gif"}, {f: "き", r: "ki", v: "videos/き.gif"}, {f: "く", r: "ku", v: "videos/く.gif"}, {f: "け", r: "ke", v: "videos/け.gif"}, {f: "こ", r: "ko", v: "videos/こ.gif"}],
         'SA': [{f: "さ", r: "sa", v: "videos/さ.gif"}, {f: "し", r: "shi", v: "videos/し.gif"}, {f: "す", r: "su", v: "videos/す.gif"}, {f: "せ", r: "se", v: "videos/せ.gif"}, {f: "そ", r: "so", v: "videos/そ.gif"}],
-        'TA': [{f: "た", r: "ta", v: "videos/た.gif"}, {f: "ち", r: "chi", v: "videos/ち.gif"}, {f: "つ", r: "tsu", v: "videos/つ.gif"}, {f: "て", r: "te", v: "videos/て.gif"}, {f: "と", r: "to", v: "videos/と.gif"}],
+        'TA': [{f: "た", r: "ta", v: "videos/た.gif"}, {f: "ち", r: "chi", v: "videos/ち.gif"}, {f: "つ", r: "tsu", v: "videos/つ.gif"}, {f: "て", r: "te", v: "videos/て.gif"}, {f: "と", r: "to", v: "videos/to.gif"}],
         'NA': [{f: "な", r: "na", v: "videos/な.gif"}, {f: "に", r: "ni", v: "videos/に.gif"}, {f: "ぬ", r: "nu", v: "videos/ぬ.gif"}, {f: "ね", r: "ne", v: "videos/ね.gif"}, {f: "の", r: "no", v: "videos/の.gif"}],
         'HA': [{f: "は", r: "ha", v: "videos/は.gif"}, {f: "ひ", r: "hi", v: "videos/ひ.gif"}, {f: "ふ", r: "fu", v: "videos/ふ.gif"}, {f: "へ", r: "he", v: "videos/へ.gif"}, {f: "ほ", r: "ho", v: "videos/ほ.gif"}],
         'MA': [{f: "ま", r: "ma", v: "videos/ま.gif"}, {f: "み", r: "mi", v: "videos/み.gif"}, {f: "む", r: "mu", v: "videos/む.gif"}, {f: "め", r: "me", v: "videos/め.gif"}, {f: "も", r: "mo", v: "videos/も.gif"}],
         'YA': [{f: "や", r: "ya", v: "videos/や.gif"}, {f: "ゆ", r: "yu", v: "videos/ゆ.gif"}, {f: "よ", r: "yo", v: "videos/よ.gif"}],
         'RA': [{f: "ら", r: "ra", v: "videos/ら.gif"}, {f: "り", r: "ri", v: "videos/り.gif"}, {f: "る", r: "ru", v: "videos/る.gif"}, {f: "れ", r: "re", v: "videos/れ.gif"}, {f: "ろ", r: "ro", v: "videos/ろ.gif"}],
         'WA': [{f: "わ", r: "wa", v: "videos/わ.gif"}, {f: "を", r: "wo", v: "videos/を.gif"}, {f: "ん", r: "n", v: "videos/ん.gif"}],
-        'GA': [{f: "が", r: "ga", v: "videos/が.gif"}, {f: "ぎ", r: "gi", v: "videos/ぎ.gif"}, {f: "ぐ", r: "gu", v: "videos/ぐ.gif"}, {f: "げ", r: "ge", v: "videos/げ.gif"}, {f: "ご", r: "go", v: "videos/ご.gif"}],
-        'ZA': [{f: "ざ", r: "za", v: "videos/ざ.gif"}, {f: "じ", r: "ji", v: "videos/じ.gif"}, {f: "ず", r: "zu", v: "videos/ず.gif"}, {f: "ぜ", r: "ze", v: "videos/ぜ.gif"}, {f: "ぞ", r: "zo", v: "videos/ぞ.gif"}],
-        'DA': [{f: "だ", r: "da", v: "videos/だ.gif"}, {f: "ぢ", r: "ji", v: "videos/ぢ.gif"}, {f: "づ", r: "zu", v: "videos/づ.gif"}, {f: "で", r: "de", v: "videos/で.gif"}, {f: "ど", r: "do", v: "videos/ど.gif"}],
-        'BA': [{f: "ば", r: "ba", v: "videos/ば.gif"}, {f: "び", r: "bi", v: "videos/び.gif"}, {f: "ぶ", r: "bu", v: "videos/ぶ.gif"}, {f: "べ", r: "be", v: "videos/べ.gif"}, {f: "ぼ", r: "bo", v: "videos/ぼ.gif"}],
-        'PA': [{f: "ぱ", r: "pa", v: "videos/ぱ.gif"}, {f: "ぴ", r: "pi", v: "videos/ぴ.gif"}, {f: "ぷ", r: "pu", v: "videos/ぷ.gif"}, {f: "ぺ", r: "pe", v: "videos/ぺ.gif"}, {f: "ぽ", r: "po", v: "videos/ぽ.gif"}],
-        'KYA': [{f: "きゃ", r: "kya", v: "videos/きゃ.gif"}, {f: "きゅ", r: "kyu", v: "videos/きゅ.gif"}, {f: "きょ", r: "kyo", v: "videos/きょ.gif"}],
-        'SHA': [{f: "しゃ", r: "sha", v: "videos/しゃ.gif"}, {f: "しゅ", r: "shu", v: "videos/しゅ.gif"}, {f: "しょ", r: "sho", v: "videos/しょ.gif"}],
-        'CHA': [{f: "ちゃ", r: "cha", v: "videos/ちゃ.gif"}, {f: "ちゅ", r: "chu", v: "videos/ちゅ.gif"}, {f: "ちょ", r: "cho", v: "videos/ちょ.gif"}],
-        'NYA': [{f: "にゃ", r: "nya", v: "videos/にゃ.gif"}, {f: "にゅ", r: "nyu", v: "videos/にゅ.gif"}, {f: "にょ", r: "nyo", v: "videos/にょ.gif"}],
-        'HYA': [{f: "ひゃ", r: "hya", v: "videos/ひゃ.gif"}, {f: "ひゅ", r: "hyu", v: "videos/ひゅ.gif"}, {f: "ひょ", r: "hyo", v: "videos/ひょ.gif"}],
-        'MYA': [{f: "みゃ", r: "mya", v: "videos/みゃ.gif"}, {f: "みゅ", r: "myu", v: "videos/みゅ.gif"}, {f: "みょ", r: "myo", v: "videos/みょ.gif"}],
-        'RYA': [{f: "りゃ", r: "rya", v: "videos/りゃ.gif"}, {f: "りゅ", r: "ryu", v: "videos/りゅ.gif"}, {f: "りょ", r: "ryo", v: "videos/りょ.gif"}],
-        'GYA': [{f: "ぎゃ", r: "gya", v: "videos/ぎゃ.gif"}, {f: "ぎゅ", r: "gyu", v: "videos/ぎゅ.gif"}, {f: "ぎょ", r: "gyo", v: "videos/ぎょ.gif"}],
-        'JA': [{f: "じゃ", r: "ja", v: "videos/じゃ.gif"}, {f: "じゅ", r: "ju", v: "videos/じゅ.gif"}, {f: "じょ", r: "jo", v: "videos/じょ.gif"}],
-        'BYA': [{f: "びゃ", r: "bya", v: "videos/びゃ.gif"}, {f: "びゅ", r: "byu", v: "videos/びゅ.gif"}, {f: "びょ", r: "byo", v: "videos/びょ.gif"}],
-        'PYA': [{f: "ぴゃ", r: "pya", v: "videos/ぴゃ.gif"}, {f: "ぴゅ", r: "pyu", v: "videos/ぴゅ.gif"}, {f: "ぴょ", r: "pyo", v: "videos/ぴょ.gif"}]
+        'GA': [
+            {f: "が", r: "ga (Write か, then add '')", v: "videos/か.gif"},
+            {f: "ぎ", r: "gi (Write き, then add '')", v: "videos/き.gif"},
+            {f: "ぐ", r: "gu (Write く, then add '')", v: "videos/く.gif"},
+            {f: "げ", r: "ge (Write け, then add '')", v: "videos/け.gif"},
+            {f: "ご", r: "go (Write こ, then add '')", v: "videos/こ.gif"}
+        ],
+        'ZA': [
+            {f: "ざ", r: "za (Write さ, then add '')", v: "videos/さ.gif"},
+            {f: "じ", r: "ji (Write し, then add '')", v: "videos/し.gif"},
+            {f: "ず", r: "zu (Write す, then add '')", v: "videos/す.gif"},
+            {f: "ぜ", r: "ze (Write せ, then add '')", v: "videos/せ.gif"},
+            {f: "ぞ", r: "zo (Write そ, then add '')", v: "videos/そ.gif"}
+        ],
+        'DA': [
+            {f: "だ", r: "da (Write た, then add '')", v: "videos/た.gif"},
+            {f: "ぢ", r: "ji (Write ち, then add '')", v: "videos/ち.gif"},
+            {f: "づ", r: "zu (Write つ, then add '')", v: "videos/つ.gif"},
+            {f: "で", r: "de (Write て, then add '')", v: "videos/て.gif"},
+            {f: "ど", r: "do (Write と, then add '')", v: "videos/と.gif"}
+        ],
+        'BA': [
+            {f: "ば", r: "ba (Write は, then add '')", v: "videos/は.gif"},
+            {f: "び", r: "bi (Write ひ, then add '')", v: "videos/ひ.gif"},
+            {f: "ぶ", r: "bu (Write ふ, then add '')", v: "videos/ふ.gif"},
+            {f: "べ", r: "be (Write へ, then add '')", v: "videos/へ.gif"},
+            {f: "ぼ", r: "bo (Write ほ, then add '')", v: "videos/ほ.gif"}
+        ],
+        'PA': [
+            {f: "ぱ", r: "pa (Write は, then add ゜)", v: "videos/は.gif"},
+            {f: "ぴ", r: "pi (Write ひ, then add ゜)", v: "videos/ひ.gif"},
+            {f: "ぷ", r: "pu (Write ふ, then add ゜)", v: "videos/ふ.gif"},
+            {f: "ぺ", r: "pe (Write へ, then add ゜)", v: "videos/へ.gif"},
+            {f: "ぽ", r: "po (Write ほ, then add ゜)", v: "videos/ほ.gif"}
+        ],
+        'KYA': [
+            {f: "きゃ", r: "kya (Write き, then add small ゃ)", v: "videos/き.gif"},
+            {f: "きゅ", r: "kyu (Write き, then add small ゅ)", v: "videos/き.gif"},
+            {f: "きょ", r: "kyo (Write き, then add small ょ)", v: "videos/き.gif"}
+        ],
+        'SHA': [
+            {f: "しゃ", r: "sha (Write し, then add small ゃ)", v: "videos/し.gif"},
+            {f: "しゅ", r: "shu (Write し, then add small ゅ)", v: "videos/し.gif"},
+            {f: "しょ", r: "sho (Write し, then add small ょ)", v: "videos/し.gif"}
+        ],
+        'CHA': [
+            {f: "ちゃ", r: "cha (Write ち, then add small ゃ)", v: "videos/ち.gif"},
+            {f: "ちゅ", r: "chu (Write ち, then add small ゅ)", v: "videos/ち.gif"},
+            {f: "ちょ", r: "cho (Write ち, then add small ょ)", v: "videos/ち.gif"}
+        ],
+        'NYA': [
+            {f: "にゃ", r: "nya (Write に, then add small ゃ)", v: "videos/に.gif"},
+            {f: "にゅ", r: "nyu (Write に, then add small ゅ)", v: "videos/に.gif"},
+            {f: "にょ", r: "nyo (Write に, then add small ょ)", v: "videos/に.gif"}
+        ],
+        'HYA': [
+            {f: "ひゃ", r: "hya (Write ひ, then add small ゃ)", v: "videos/ひ.gif"},
+            {f: "ひゅ", r: "hyu (Write ひ, then add small ゅ)", v: "videos/ひ.gif"},
+            {f: "ひょ", r: "hyo (Write ひ, then add small ょ)", v: "videos/ひ.gif"}
+        ],
+        'MYA': [
+            {f: "みゃ", r: "mya (Write み, then add small ゃ)", v: "videos/み.gif"},
+            {f: "みゅ", r: "myu (Write み, then add small ゅ)", v: "videos/み.gif"},
+            {f: "みょ", r: "myo (Write み, then add small ょ)", v: "videos/み.gif"}
+        ],
+        'RYA': [
+            {f: "りゃ", r: "rya (Write り, then add small ゃ)", v: "videos/り.gif"},
+            {f: "りゅ", r: "ryu (Write り, then add small ゅ)", v: "videos/り.gif"},
+            {f: "りょ", r: "ryo (Write り, then add small ょ)", v: "videos/り.gif"}
+        ],
+        'GYA': [
+            {f: "ぎゃ", r: "gya (Write き, then add '' and small ゃ)", v: "videos/き.gif"},
+            {f: "ぎゅ", r: "gyu (Write き, then add '' and small ゅ)", v: "videos/き.gif"},
+            {f: "ぎょ", r: "gyo (Write き, then add '' and small ょ)", v: "videos/き.gif"}
+        ],
+        'JA': [
+            {f: "じゃ", r: "ja (Write し, then add '' and small ゃ)", v: "videos/し.gif"},
+            {f: "じゅ", r: "ju (Write し, then add '' and small ゅ)", v: "videos/し.gif"},
+            {f: "じょ", r: "jo (Write し, then add '' and small ょ)", v: "videos/し.gif"}
+        ],
+        'BYA': [
+            {f: "びゃ", r: "bya (Write ひ, then add '' and small ゃ)", v: "videos/ひ.gif"},
+            {f: "びゅ", r: "byu (Write ひ, then add '' and small ゅ)", v: "videos/ひ.gif"},
+            {f: "びょ", r: "byo (Write ひ, then add '' and small ょ)", v: "videos/ひ.gif"}
+        ],
+        'PYA': [
+            {f: "ぴゃ", r: "pya (Write ひ, then add ゜ and small ゃ)", v: "videos/ひ.gif"},
+            {f: "ぴゅ", r: "pyu (Write ひ, then add ゜ and small ゅ)", v: "videos/ひ.gif"},
+            {f: "ぴょ", r: "pyo (Write ひ, then add ゜ and small ょ)", v: "videos/ひ.gif"}
+        ]
     };
 
     let navHistory = ['home'];
@@ -405,36 +489,9 @@
         'KYA': 'きゃ', 'SHA': 'しゃ', 'CHA': 'ちゃ', 'NYA': 'にゃ', 'HYA': 'ひゃ', 'MYA': 'みゃ', 'RYA': 'りゃ', 'GYA': 'ぎゃ', 'JA': 'じゃ', 'BYA': 'びゃ', 'PYA': 'ぴゃ'
     };
 
-    function capitalize(str) { return str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : ""; }
-
-    window.addEventListener('keydown', (e) => {
-        if (navHistory[navHistory.length - 1] === 'fc-player') {
-            if (e.code === 'Space') { e.preventDefault(); flipCard(); }
-            if (e.code === 'ArrowRight') nextCard();
-            if (e.code === 'ArrowLeft') previousCard();
-        }
-    });
-
-    function speakText(text) {
-        if (!window.speechSynthesis) return;
-        window.speechSynthesis.cancel(); 
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'ja-JP';
-        utterance.rate = 0.85;
-        window.speechSynthesis.speak(utterance);
-    }
-
-    function speakCurrentCard(event) {
-        event.stopPropagation(); 
-        const item = currentDeck[currentDeckOrder[currentIdx]];
-        speakText(item.f);
-    }
-
     function showSection(id, push = false) {
-        // Reset card state whenever leaving or switching sections
         const card = document.getElementById('card');
         if (card) card.classList.remove('flipped');
-
         document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
         const target = document.getElementById(id);
         if(target) target.classList.add('active');
@@ -480,13 +537,12 @@
     function changeCard(offset, direction) {
         if (currentDeck.length === 0) return;
         const card = document.getElementById('card');
-        const wasFlipped = card.classList.contains('flipped');
         card.classList.remove('flipped');
         setTimeout(() => {
             currentIdx = (currentIdx + offset + currentDeck.length) % currentDeck.length;
             updateFlashcardUI();
             applySlideAnimation(direction);
-        }, wasFlipped ? 150 : 0);
+        }, 150);
     }
 
     function nextCard() { changeCard(1, 'next'); }
@@ -507,31 +563,49 @@
         const item = currentDeck[currentDeckOrder[currentIdx]];
         document.getElementById('fc-progress').innerText = `Card ${currentIdx + 1} of ${currentDeck.length}`;
         document.getElementById('front-text').innerText = item.f;
-        document.getElementById('reading-text').innerText = capitalize(item.r);
+        
+        // LOGIC: Replace text in brackets with a styled span
+        let rawText = item.r;
+        let formattedText = rawText.replace(/\(([^)]+)\)/g, '<span class="instruction">($1)</span>');
+        document.getElementById('reading-text').innerHTML = formattedText;
         
         const mediaCont = document.getElementById('media-content');
         mediaCont.innerHTML = "";
 
         if (item.v) {
-            const isVideo = item.v.endsWith('.mp4') || item.v.endsWith('.webm');
-            if (isVideo) {
+            const isVideo = item.v.endsWith('.mp4') || item.v.endsWith('.webm') || item.v.includes('.gif');
+            if (item.v.endsWith('.gif')) {
+                const img = document.createElement('img');
+                img.src = item.v;
+                mediaCont.appendChild(img);
+            } else {
                 const video = document.createElement('video');
                 video.src = item.v;
                 video.autoplay = true;
                 video.loop = true;
                 video.muted = true;
                 video.playsInline = true;
+                video.addEventListener('timeupdate', function() {
+                    if (this.currentTime < 1) this.currentTime = 1;
+                });
                 mediaCont.appendChild(video);
-            } else {
-                const img = document.createElement('img');
-                img.src = item.v;
-                mediaCont.appendChild(img);
             }
             mediaCont.style.borderStyle = "solid";
         } else {
-            mediaCont.innerHTML = "<span style='color:#ccc; font-size:0.8rem;'>Video/GIF placeholder</span>";
+            mediaCont.innerHTML = "<span style='color:#ccc; font-size:0.8rem;'>Video placeholder</span>";
             mediaCont.style.borderStyle = "dashed";
         }
+    }
+
+    function speakCurrentCard(event) {
+        event.stopPropagation(); 
+        const item = currentDeck[currentDeckOrder[currentIdx]];
+        if (!window.speechSynthesis) return;
+        window.speechSynthesis.cancel(); 
+        const utterance = new SpeechSynthesisUtterance(item.f);
+        utterance.lang = 'ja-JP';
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
     }
 </script>
 </body>
