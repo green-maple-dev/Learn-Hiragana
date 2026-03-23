@@ -171,6 +171,28 @@
             padding: 20px;
         }
 
+        .download-footer {
+            margin-top: auto;
+            padding: 20px 0 40px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .download-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .download-link:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
         .card-front {
             font-size: 8rem;
             font-weight: bold;
@@ -608,5 +630,10 @@
         window.speechSynthesis.speak(utterance);
     }
 </script>
+<footer class="download-footer">
+    <a href="https://drive.google.com/drive/folders/1XevW-tc7uBlaNBv57vXpUlSosi3Y1B3e?usp=sharing" class="download-link">
+        Download Android Version (.apk)
+    </a>
+</footer>
 </body>
 </html>
